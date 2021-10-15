@@ -5,7 +5,10 @@
 
       <li v-for="post in posts" :key="post.title">
         <PostCard
-        :title="post.title"/>
+        :title="post.name"
+        :img="post.image"
+        :description="post.species"
+        :tags="post.origin"/>
       </li>
     </div>
   </div>
@@ -26,7 +29,7 @@ export default {
     }
   },
   mounted(){
-    this.getPosts('https://rickandmortyapi.com/api/character/2')
+    this.getPosts('https://rickandmortyapi.com/api/character')
   },
   methods:{
 
@@ -40,7 +43,7 @@ export default {
       await fetch(url,requestParams)
       .then(res => res.json())
       .then(res =>{
-        this.posts=res
+        this.posts=res.results
         console.log(this.posts)
       })
 

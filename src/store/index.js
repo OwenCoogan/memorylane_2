@@ -5,6 +5,7 @@ export default createStore({
   state: {
     location:null,
     gettingLocation: false,
+    currentPostList:null,
   },
   mutations: {
     TOGGLE_LOADING(state, payload) {
@@ -31,7 +32,6 @@ export default createStore({
               commit('TOGGLE_LOADING', false);
               resolve(currentPosition);
 
-              return currentPosition;
             },
             (err) => {
               commit('TOGGLE_LOADING', false);
@@ -44,6 +44,9 @@ export default createStore({
         }
       });
     },
+    getPosts(){
+
+    }
   },
   modules: {
   }

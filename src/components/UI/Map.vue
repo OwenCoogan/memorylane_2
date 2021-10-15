@@ -1,7 +1,5 @@
 <template>
-  <div class="w-2/3" id="mapContainer">
-
-  </div>
+  <div class="w-2/3" id="mapContainer"/>
 </template>
 
 <script>

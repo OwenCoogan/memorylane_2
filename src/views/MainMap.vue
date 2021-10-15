@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
-    <Map/>
     <PostList/>
+    <Map/>
   </div>
 </template>
 

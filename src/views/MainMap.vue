@@ -10,7 +10,6 @@ export default {
   name: "LeafletMap",
   data() {
     return {
-        map: null,
         posts: [],
     };
   },
@@ -19,8 +18,5 @@ export default {
 components: {
     Map
 }
-
-
-
 };
 </script>

@@ -1,15 +1,26 @@
 <template>
-  <Header/>
-  <Map/>
+  <div>
+    <Map/>
+  </div>
 </template>
+
 <script>
-import Header from '@/components/UI/Header'
 import Map from '@/components/UI/Map'
 export default {
-  name: 'Map',
-  components: {
-    Header,
+  name: "LeafletMap",
+  data() {
+    return {
+        map: null,
+        posts: [],
+    };
+  },
+  created() {
+  },
+components: {
     Map
-  }
 }
+
+
+
+};
 </script>

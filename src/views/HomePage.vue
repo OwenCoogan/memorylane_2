@@ -1,13 +1,11 @@
 <template>
-  <Header/>
-  <h1>Hello</h1>
+  <div>
+  </div>
 </template>
 <script>
-import Header from '@/components/UI/Header'
 export default {
-  name: 'App',
+  name: 'Homepage',
   components: {
-    Header
   }
 }
 </script>

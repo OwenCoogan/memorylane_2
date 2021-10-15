@@ -1,13 +1,15 @@
 <template>
   <Header/>
-  <h1>Hello</h1>
+  <Map/>
 </template>
 <script>
 import Header from '@/components/UI/Header'
+import Map from '@/components/UI/Map'
 export default {
-  name: 'App',
+  name: 'Map',
   components: {
-    Header
+    Header,
+    Map
   }
 }
 </script>

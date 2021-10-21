@@ -16,6 +16,11 @@ const routes = [
     path: '/map',
     name: 'Map',
     component: () => import(/* webpackChunkName: "about" */ '../views/MainMap.vue')
+  },
+  {
+    path: '/post/:id',
+    name: 'Post {{ $route.params.id }}',
+    component: () => import(/* webpackChunkName: "about" */ '../views/PostPage.vue')
   }
 ]
 

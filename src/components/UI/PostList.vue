@@ -29,21 +29,18 @@ export default {
     }
   },
   mounted(){
-    this.getPosts('https://rickandmortyapi.com/api/character')
+    this.getPosts('http://localhost:8081/v1/posts')
   },
   methods:{
-
     async getPosts(url){
        var myHeaders = new Headers();
         var requestParams = { method: 'GET',
                   headers: myHeaders,
-                  mode: 'cors',
-                  cache: 'default'
+                  mode: 'no-cors',
+                  cache: 'default',
         };
-      await fetch(url,requestParams)
-      .then(res => res.json())
-      .then(res =>{
-        this.posts=res.results
+      await fetch(url,requestParams).then(res =>{
+        this.posts=res
         console.log(this.posts)
       })
 

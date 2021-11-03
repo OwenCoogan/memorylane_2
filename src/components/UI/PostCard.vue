@@ -8,6 +8,13 @@
         <p class="text-gray-700 text-base">
         {{description}}
         </p>
+        <div class="geolocation">
+          <h3 class="text-sm bold">Géolocation</h3>
+          <div class="flex">
+            <span class="w-1/2">{{lat}}</span>
+            <span class="w-1/2">{{long}}</span>
+          </div>
+        </div>
       </div>
       <div class="px-6 pt-4 pb-2">
       <span v-for="tag in tags" :key="tag.name" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{tag}}</span>
@@ -26,6 +33,11 @@ export default {
       required: true,
       default:'azrazeraze'
     },
+    id:{
+      type: String,
+      required: true,
+      default:'not-found'
+    },
     img: {
       type: String,
       default: '../image-path/image-name.jpg',
@@ -34,9 +46,17 @@ export default {
       type: String,
       default: 'Lorem Ipsum',
     },
+    lat: {
+      type: Number,
+      default: 48.8611534,
+    },
+    long:{
+      type: Number,
+      default: 2.3689913,
+    },
     tags: {
       type: Object,
-    },
+    }
   },
   components:{
   },

@@ -5,10 +5,14 @@
 
       <li v-for="post in posts" :key="post.title">
         <PostCard
-        :title="post.name"
+        :title="post.title"
+        :id="post._id"
         :img="post.image"
-        :description="post.species"
-        :tags="post.origin"/>
+        :description="post.content"
+        :tags="post.tags"
+        :lat="post.gpsPositionLat"
+        :long="post.gpsPositionLong"
+        />
       </li>
     </div>
   </div>
@@ -16,6 +20,7 @@
 
 <script>
 import PostCard from '@/components/UI/PostCard'
+import axios from 'axios'
 export default {
   name: 'PostList',
   props: {
@@ -29,20 +34,14 @@ export default {
     }
   },
   mounted(){
-    this.getPosts('http://localhost:8081/v1/posts')
+    this.getPosts('http://localhost:6950/v1/posts')
   },
   methods:{
     async getPosts(url){
-       var myHeaders = new Headers();
-        var requestParams = { method: 'GET',
-                  headers: myHeaders,
-                  mode: 'no-cors',
-                  cache: 'default',
-        };
-      await fetch(url,requestParams).then(res =>{
-        this.posts=res
-        console.log(this.posts)
-      })
+        const res = await axios.get(url, {
+            })
+      this.posts = res.data.data
+      console.log(this.posts[0]._id)
 
     }
   }

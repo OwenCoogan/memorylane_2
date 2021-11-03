@@ -1,12 +1,10 @@
 <template>
   <div class="container mx-auto flex flex-wrap pt-4 pb-12">
-        <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-        
-        </h1>
+        <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800" v-bind:title="post.title"/>
         <div class="w-full mb-4">
           <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
         </div>
-          
+
       </div>
 </template>
 
@@ -21,7 +19,7 @@ export default {
     }
   },
   mounted(){
-    this.getPosts('https://rickandmortyapi.com/api/character/'+this.$route.params.id)
+    this.getPosts('http://localhost:6950/v1/post/'+this.$route.params.id)
   },
   methods:{
     async getPosts(url){

@@ -19,7 +19,7 @@ export default {
     }
   },
   mounted(){
-    this.getPosts('http://localhost:6950/v1/post/'+this.$route.params.id)
+    this.getPosts('http://127.0.0.1:6950/v1/post/'+this.$route.params.id)
   },
   methods:{
     async getPosts(url){

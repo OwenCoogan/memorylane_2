@@ -1,6 +1,6 @@
 <template>
   <div class="w-full max-w-xs">
-  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" @submit="handleSubmitPost">
+  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" @submit.prevent="handleSubmitPost">
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
         Title
@@ -27,16 +27,26 @@
         <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="desc" type="textarea" v-model="this.position.gpsPositionLong">
       </div>
     </div>
-    <button type="submit">Submit</button>
+    <button type="submit" class="bg-indigo-500">
+    <Loader v-if="this.loading === true"/>
+      <div v-if="this.loading ===false">
+        <p v-if="this.message!=null">{this.message}</p>
+        <p v-else>Submit</p>
+      </div>
+    </button>
   </form>
 </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Loader from '@/assets/svg/Loader'
 export default {
   name: 'CreatePostForm',
   props: {
+  },
+  components:{
+    Loader
   },
   data(){
     return{
@@ -57,8 +67,7 @@ export default {
     }
   },
   methods:{
-    async handleSubmitPost(e){
-      e.preventDefault();
+    async handleSubmitPost(){
       this.loading = true;
       axios.post('http://localhost:6950/v1/post/create', {
           title:this.title,
@@ -66,14 +75,17 @@ export default {
           gpsPositionLat:this.position.gpsPositionLat,
           gpsPositionLong:this.position.gpsPositionLong
       })
+
+      .then(this.loading = false)
       .then(res => {
         console.log(res)
+        location.reload();
+
       })
       .catch(err =>{
         console.log(err)
+        this.message = 'an error has occured';
       });
-      this.loading = false;
-
     }
   }
 }

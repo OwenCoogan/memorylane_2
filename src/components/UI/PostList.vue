@@ -36,7 +36,7 @@ export default {
     }
   },
   mounted(){
-    this.posts = this.$store.state.currentPostList
+    this.posts = this.$store.state.currentPostList.reverse();
   },
   methods:{
   }

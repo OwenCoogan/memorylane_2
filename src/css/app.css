@@ -13,3 +13,18 @@ h1,h2,h3{
 #mapContainer{
   height:100vh;
 }
+.tab-button--mobile{
+  margin:auto;
+  width: auto;
+}
+.tab-button--mobile svg{
+  margin:auto;
+}
+@media screen and (max-width:600px) {
+  .post-list--container{
+    width:100%
+  }
+  .leaflet-container{
+    width:100%;
+  }
+}

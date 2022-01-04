@@ -1,5 +1,5 @@
 <template>
-  <div class="w-1/3 post-list--container">
+  <div class="post-list--container">
     <h2 class="text-xl text-center">Vos posts</h2>
     <div class="postlist">
       <li v-for="post in posts" :key="post.title">

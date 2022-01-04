@@ -9,6 +9,7 @@ export default createStore({
     location:null,
     gettingLocation: false,
     currentPostList:null,
+    device:null,
   },
   mutations: {
     TOGGLE_LOADING(state, payload) {
@@ -16,6 +17,9 @@ export default createStore({
     },
     CHANGE_GEOLOCATION(state, payload) {
       state.geolocation = payload;
+    },
+    CHECK_DEVICE(state) {
+      window.innerWidth <= 690 ? state.device = 'Mobile' : state.device = 'desktop';
     },
   },
   actions: {
@@ -49,6 +53,9 @@ export default createStore({
     },
     getPosts(){
 
+    },
+    checkDevice({ commit }){
+      commit('CHECK_DEVICE', navigator.userAgent);
     }
   }
 })

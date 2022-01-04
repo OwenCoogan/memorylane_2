@@ -33,7 +33,11 @@ export default {
   name: 'Header',
   props: {
   },
-
+  data(){
+    return{
+      mobileMenuOpen:false
+    }
+  },
   methods:{
     toggleMenu(){
       this.mobileMenuOpen = !this.mobileMenuOpen

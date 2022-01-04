@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import { auth } from './auth.module';
-
+import axios from 'axios'
 export default createStore({
   modules: {
     auth : auth
@@ -10,6 +10,7 @@ export default createStore({
     gettingLocation: false,
     currentPostList:null,
     device:null,
+    posts:null,
   },
   mutations: {
     TOGGLE_LOADING(state, payload) {
@@ -20,6 +21,13 @@ export default createStore({
     },
     CHECK_DEVICE(state) {
       window.innerWidth <= 690 ? state.device = 'Mobile' : state.device = 'desktop';
+    },
+    async GET_POSTS(state,url) {
+      await axios.get(url, {
+      })
+      .then(res => {
+        state.posts = res.data.data
+      });
     },
   },
   actions: {
@@ -51,8 +59,8 @@ export default createStore({
         }
       });
     },
-    getPosts(){
-
+    getPosts({ commit },url){
+      commit('GET_POSTS', url);
     },
     checkDevice({ commit }){
       commit('CHECK_DEVICE', navigator.userAgent);

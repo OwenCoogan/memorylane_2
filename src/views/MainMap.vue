@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <PostList/>
+    <PostList v-if="this.device !='Mobile'"/>
     <Map/>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
   data() {
     return {
         posts: [],
-        device : null,
+        device : this.$store.state.device,
     };
   },
   created() {

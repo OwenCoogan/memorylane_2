@@ -1,7 +1,6 @@
 <template>
   <div class="w-2/3 z-40" id="mapContainer"/>
 </template>
-
 <script>
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -21,7 +20,6 @@ export default {
   mounted() {
     this.$store.dispatch('currentLocation')
     .then(coordinates => {
-    console.log(coordinates)
     localStorage.setItem('coordinates', JSON.stringify(coordinates));
     this.map = L.map("mapContainer").setView([coordinates.lat,coordinates.long], 200);
     L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {

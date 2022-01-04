@@ -19,7 +19,7 @@ export default {
   },
   mounted(){
     this.checkDevice();
-    console.log(this.$store.state.device)
+    this.$store.dispatch('getPosts','http://localhost:6950/v1/posts');
   }
 }
 </script>

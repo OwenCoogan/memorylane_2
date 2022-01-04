@@ -1,0 +1,80 @@
+<template>
+  <div class="w-full max-w-xs">
+  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" @submit="handleSubmitPost">
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+        Title
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Titre" v-model="this.title">
+    </div>
+    <div class="mb-6">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="desc">
+        Description
+      </label>
+      <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="desc" type="textarea" placeholder="Description here" v-model="this.content">
+    </div>
+    <div class="mb-6">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="desc">
+        Position
+      </label>
+      <div class="position-container">
+        <span>Latitude</span>
+        <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="desc" type="textarea" v-model="this.position.gpsPositionLat">
+        <input>
+      </div>
+      <div class="position-container">
+        <span>Latitude</span>
+        <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="desc" type="textarea" v-model="this.position.gpsPositionLong">
+      </div>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+</template>
+
+<script>
+import axios from 'axios'
+export default {
+  name: 'CreatePostForm',
+  props: {
+  },
+  data(){
+    return{
+      title:null,
+      content:null,
+      loading:false,
+      position:{
+        gpsPositionLat:null,
+        gpsPositionLong:null
+      }
+
+    }
+  },
+  mounted(){
+    this.position = {
+        gpsPositionLat:"1",
+        gpsPositionLong:"2",
+    }
+  },
+  methods:{
+    async handleSubmitPost(e){
+      e.preventDefault();
+      this.loading = true;
+      axios.post('http://localhost:6950/v1/post/create', {
+          title:this.title,
+          content:this.content,
+          gpsPositionLat:this.position.gpsPositionLat,
+          gpsPositionLong:this.position.gpsPositionLong
+      })
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err =>{
+        console.log(err)
+      });
+      this.loading = false;
+
+    }
+  }
+}
+</script>

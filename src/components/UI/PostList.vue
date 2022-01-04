@@ -14,35 +14,31 @@
         />
       </li>
     </div>
+    <CreatePostForm v-if="this.formPostCreateShown === true "/>
   </div>
 </template>
 
 <script>
 import PostCard from '@/components/UI/PostCard'
-import axios from 'axios'
+import CreatePostForm from '@/components/UI/PostForm'
 export default {
   name: 'PostList',
   props: {
   },
   components:{
-    PostCard
+    PostCard,
+    CreatePostForm
   },
   data(){
     return{
-      posts:null
+      posts:null,
+      formPostCreateShown:true,
     }
   },
   mounted(){
-    this.getPosts('http://localhost:6950/v1/posts')
+    this.posts = this.$store.state.posts
   },
   methods:{
-    async getPosts(url){
-        const res = await axios.get(url, {
-            })
-      this.posts = res.data.data
-      console.log(this.posts[0]._id)
-
-    }
   }
 }
 </script>

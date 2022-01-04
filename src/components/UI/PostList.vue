@@ -15,9 +15,13 @@
       </li>
     </div>
     <CreatePostForm v-if="this.formPostCreateShown === true "/>
+    <button @click="toggleForm()">
+    <p v-if="this.formPostCreateShown === false">Create a Post</p>
+    <p v-else >X</p>
+
+    </button>
   </div>
 </template>
-
 <script>
 import PostCard from '@/components/UI/PostCard'
 import CreatePostForm from '@/components/UI/PostForm'
@@ -32,13 +36,16 @@ export default {
   data(){
     return{
       posts:null,
-      formPostCreateShown:true,
+      formPostCreateShown:false,
     }
   },
   mounted(){
     this.posts = this.$store.state.currentPostList.reverse();
   },
   methods:{
+    toggleForm(){
+      this.formPostCreateShown = !this.formPostCreateShown;
+    }
   }
 }
 </script>

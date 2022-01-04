@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center items-center mt-52">
     <div class="w-full max-w-xs">
-      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" @submit="handleLogin"
+      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" @submit="submitForm"
       >
         <div class="identity-input mb-4">
           <label
@@ -16,7 +16,7 @@
             type="text"
             placeholder="Email"
             aria-describedby="emailHelp"
-            v-model="user.email"
+            v-model="email"
           />
           <span class="text-xs text-red-700" id="emailHelp"></span>
         </div>
@@ -30,15 +30,41 @@
 
           <input
             aria-describedby="passwordHelp"
-            v-model="user.password"
+            v-model="password"
 
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             type="password"
             placeholder="*******"
           />
+          <label
+            for="Name"
+            class="block text-gray-700 text-sm font-bold mb-2"
+            >Prénom</label
+          >
+          <input
+            aria-describedby="Name"
+            v-model="firstName"
 
+            class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            id="firstName"
+            type="text"
+            placeholder="Prénom"
+          />
+          <label
+            for="Name"
+            class="block text-gray-700 text-sm font-bold mb-2"
+            >Nom</label
+          >
+          <input
+            aria-describedby="Name"
+            v-model="lastName"
 
+            class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            id="lastName"
+            type="text"
+            placeholder="Nom"
+          />
 
           <span class="text-xs text-red-700" id="passwordHelp"></span>
         </div>
@@ -66,11 +92,12 @@
 import User from '../models/user';
 
 export default {
-  name: 'Signin',
+  name: 'Register',
   data() {
     return {
-      user: new User('', ''),
-      loading: false,
+      user: new User('', '', ''),
+      submitted: false,
+      successful: false,
       message: ''
     };
   },
@@ -79,30 +106,30 @@ export default {
       return this.$store.state.auth.status.loggedIn;
     }
   },
-  created() {
+  mounted() {
     if (this.loggedIn) {
-      this.$router.push('/profile');
+      this.$router.push('login');
     }
   },
   methods: {
-    handleLogin(e) {
+    handleRegister(e) {
       e.preventDefault();
-      this.loading = true;
-          this.$store.dispatch('auth/login', this.user).then(
-            (res) => {
-              //this.$router.push('/map');
-              console.log(res)
-            },
-            error => {
-              console.log(error)
-              this.loading = false;
-              this.message =
-                (error.response && error.response.data) ||
-                error.message ||
-                error.toString();
-            }
-          );
-        }
+      this.message = '';
+      this.submitted = true;
+        this.$store.dispatch('auth/register', this.user).then(
+          data => {
+            this.message = data.message;
+            this.successful = true;
+          },
+          error => {
+            this.message =
+              (error.response && error.response.data) ||
+              error.message ||
+              error.toString();
+            this.successful = false;
+          }
+        );
     }
+  }
 };
 </script>

@@ -1,7 +1,10 @@
 import { createStore } from 'vuex'
-
+import { auth } from './auth.module';
 
 export default createStore({
+  modules: {
+    auth : auth
+  },
   state: {
     location:null,
     gettingLocation: false,
@@ -47,7 +50,5 @@ export default createStore({
     getPosts(){
 
     }
-  },
-  modules: {
   }
 })

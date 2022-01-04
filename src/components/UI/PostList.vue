@@ -34,7 +34,7 @@ export default {
     }
   },
   mounted(){
-    this.getPosts('http://127.0.0.1:6950/v1/posts')
+    this.getPosts('http://localhost:6950/v1/posts')
   },
   methods:{
     async getPosts(url){
@@ -46,5 +46,4 @@ export default {
     }
   }
 }
-
 </script>

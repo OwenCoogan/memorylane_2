@@ -24,6 +24,9 @@ h1,h2,h3{
   height:100vh;
   overflow:scroll;
 }
+.post-list--mobile{
+  bottom:10vh;
+}
 @media screen and (max-width:600px) {
   .post-list--container{
     width:100%

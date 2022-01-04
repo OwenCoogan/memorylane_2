@@ -26,7 +26,7 @@ export default createStore({
       await axios.get(url, {
       })
       .then(res => {
-        state.posts = res.data.data
+        state.currentPostList = res.data.data
       });
     },
   },

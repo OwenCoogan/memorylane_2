@@ -8,6 +8,7 @@ export default createStore({
   state: {
     location:null,
     gettingLocation: false,
+    currentUser:null,
     currentPostList:null,
     device:null,
     posts:null,
@@ -26,9 +27,15 @@ export default createStore({
       await axios.get(url, {
       })
       .then(res => {
+        console.log(res.status)
+        if(res.status != 200){
+          state.currentPostList = 'error'
+        }
+        else{
         state.currentPostList = res.data.data
+        }
       });
-    },
+    }
   },
   actions: {
     currentLocation({ commit }) {

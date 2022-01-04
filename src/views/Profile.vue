@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <header class="jumbotron">
+    <!--<header class="jumbotron">
       <h3>
-        <strong>{{currentUser.username}}</strong> Profile
+        <strong>{{currentUser.firstname}}</strong> Profile
       </h3>
     </header>
     <p>
@@ -16,22 +16,34 @@
     <p>
       <strong>Email:</strong>
       {{currentUser.email}}
-    </p>
+    </p>-->
+
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'Profile',
+  data(){
+    return({
+      user:null
+    })
+  },
   computed: {
-    currentUser() {
-      return this.$store.state.auth.user;
+  },
+  methods:{
+    async getProfile(){
+      let accessToken = JSON.parse(localStorage.getItem('MemoryLaneCookie'));
+      await axios.get('http://localhost:6950/v1/auth/me', accessToken)
+      .then(res => {
+        console.log(res.status)
+        this.user = res.data
+      });
     }
   },
   mounted() {
-    if (!this.currentUser) {
-      this.$router.push('Login');
-    }
+    this.getProfile();
   }
 };
 </script>

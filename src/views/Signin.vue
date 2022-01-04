@@ -90,7 +90,6 @@ export default {
       this.loading = true;
           this.$store.dispatch('auth/login', this.user).then(
             (res) => {
-              //this.$router.push('/map');
               console.log(res)
             },
             error => {

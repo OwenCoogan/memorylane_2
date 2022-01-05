@@ -1,6 +1,6 @@
 import AuthService from '../services/auth.service';
 
-const user = JSON.parse(localStorage.getItem('MemoryLaneCookie'));
+const user = localStorage.getItem('MemoryLaneCookie');
 const initialState = user
   ? { status: { loggedIn: true }, user }
   : { status: { loggedIn: false }, user: null };

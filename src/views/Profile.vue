@@ -1,14 +1,10 @@
 <template>
   <div class="container">
-    <!--<header class="jumbotron">
+    <header class="jumbotron">
       <h3>
-        <strong>{{currentUser.firstname}}</strong> Profile
+        <strong>{{currentUser.firstname}}</strong>
       </h3>
     </header>
-    <p>
-      <strong>Token:</strong>
-      {{currentUser.accessToken.substring(0, 20)}} ... {{currentUser.accessToken.substr(currentUser.accessToken.length - 20)}}
-    </p>
     <p>
       <strong>Id:</strong>
       {{currentUser.id}}
@@ -16,34 +12,23 @@
     <p>
       <strong>Email:</strong>
       {{currentUser.email}}
-    </p>-->
-
+    </p>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   name: 'Profile',
-  data(){
-    return({
-      user:null
-    })
-  },
   computed: {
-  },
-  methods:{
-    async getProfile(){
-      let accessToken = JSON.parse(localStorage.getItem('MemoryLaneCookie'));
-      await axios.get('http://localhost:6950/v1/auth/me', accessToken)
-      .then(res => {
-        console.log(res.status)
-        this.user = res.data
-      });
+    currentUser() {
+      console.log(this.$store.state.auth.user)
+      return this.$store.state.auth.user;
     }
   },
   mounted() {
-    this.getProfile();
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
   }
 };
 </script>

@@ -5,7 +5,7 @@ const API_URL = 'http://localhost:6950/v1/auth/';
 
 class UserService {
   getUserBoard() {
-    return axios.get(API_URL + 'user', { headers: authHeader() });
+    return axios.get(API_URL + 'me', { headers: authHeader() });
   }
 }
 

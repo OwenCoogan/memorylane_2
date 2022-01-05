@@ -20,11 +20,13 @@
       <span v-for="tag in tags" :key="tag.name" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{tag}}</span>
       </div>
       <router-link  :to="'/Post/'+id"  class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Link mofo</router-link>
+      <SwitchPosition :lat="lat" :long="long"/>
     </div>
   </div>
 </template>
 
 <script>
+import SwitchPosition from '@/components/UI/Utilities/NavigateToPosition'
 export default {
   name: 'PostCard',
   props: {
@@ -59,6 +61,7 @@ export default {
     }
   },
   components:{
+    SwitchPosition
   },
   data(){
   },

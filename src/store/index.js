@@ -6,7 +6,8 @@ export default createStore({
     auth : auth
   },
   state: {
-    location:null,
+    geolocation:null,
+    currentPosition:null,
     gettingLocation: false,
     currentUser:null,
     currentPostList:null,
@@ -26,8 +27,8 @@ export default createStore({
     CHECK_DEVICE(state) {
       window.innerWidth <= 690 ? state.device = 'Mobile' : state.device = 'desktop';
     },
-    UPDATE_CURRENT_POSITION(state) {
-      window.innerWidth <= 690 ? state.device = 'Mobile' : state.device = 'desktop';
+    UPDATE_CURRENT_POSITION(state,payload) {
+      state.currentPosition = payload
     },
     async GET_POSTS(state,url) {
       await axios.get(url, {
@@ -77,6 +78,13 @@ export default createStore({
     },
     checkDevice({ commit }){
       commit('CHECK_DEVICE', navigator.userAgent);
+    },
+    navigateToPostPoint({ commit },position){
+      const postPosition = {
+        long: position.long,
+        lat: position.lat,
+      }
+      commit('UPDATE_CURRENT_POSITION', postPosition);
     }
   }
 })

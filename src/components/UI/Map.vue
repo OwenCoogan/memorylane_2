@@ -7,9 +7,10 @@
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import Loader from '@/assets/svg/Loader'
+import { mapState } from 'vuex';
 export default {
   name: "LeafletMap",
-
+  computed: mapState(['location']),
   components: {
       Loader,
   },
@@ -21,6 +22,7 @@ export default {
     };
   },
   created() {
+
   },
   methods:{
     setCurrentPositionMarker(coordinates){
@@ -43,6 +45,12 @@ export default {
     .then(coordinates => {
     localStorage.setItem('coordinates', JSON.stringify(coordinates));
     this.map = L.map("mapContainer").setView([coordinates.lat,coordinates.long], 200);
+    this.$store.subscribe((mutation)=>{
+      if(mutation.type === "UPDATE_CURRENT_POSITION"){
+        let postPosition = this.$store.state.currentPosition
+        this.map.setView([postPosition.lat,postPosition.long], 200);
+      }
+    })
     this.setCurrentPositionMarker(coordinates);
     L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
     }).addTo(this.map)
@@ -53,6 +61,5 @@ export default {
     }, 60 * 1000);
 
   }
-
 };
 </script>

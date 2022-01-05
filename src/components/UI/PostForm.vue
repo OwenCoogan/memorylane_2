@@ -23,7 +23,7 @@
         <input>
       </div>
       <div class="position-container">
-        <span>Latitude</span>
+        <span>Longitude</span>
         <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="desc" type="textarea" v-model="this.position.gpsPositionLong">
       </div>
     </div>
@@ -61,9 +61,10 @@ export default {
     }
   },
   mounted(){
+    let currentPosition = this.$store.state.geolocation
     this.position = {
-        gpsPositionLat:"1",
-        gpsPositionLong:"2",
+        gpsPositionLat:currentPosition.lat,
+        gpsPositionLong:currentPosition.long,
     }
   },
   methods:{

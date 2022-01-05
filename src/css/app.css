@@ -25,7 +25,12 @@ h1,h2,h3{
   overflow:scroll;
 }
 .post-list--mobile{
-  bottom:10vh;
+  bottom: 10vh;
+  width: 80vw;
+}
+.post-card--mobile{
+  width:65vw;
+  background-color:white;
 }
 @media screen and (max-width:600px) {
   .post-list--container{

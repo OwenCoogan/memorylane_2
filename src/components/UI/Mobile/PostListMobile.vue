@@ -1,9 +1,9 @@
 <template>
   <div class="post-list--mobile absolute left-1/2 transform -translate-x-1/2 z-50">
     <h2 class="text-xl text-center">Vos posts</h2>
-    <vueper-slides class="postlist">
-      <vueper-slide v-for="post in posts" :key="post.title">
-        <PostCard
+    <agile class="postlist">
+      <div v-for="post in posts" :key="post.title">
+        <PostCardMobile
         :title="post.title"
         :id="post._id"
         :img="post.image"
@@ -12,24 +12,22 @@
         :lat="post.gpsPositionLat"
         :long="post.gpsPositionLong"
         />
-      </vueper-slide>
-    </vueper-slides>
+      </div>
+    </agile>
   </div>
 </template>
 
 <script>
-import PostCard from '@/components/UI/PostCard'
-import { VueperSlides, VueperSlide } from 'vueperslides'
+import { VueAgile } from 'vue-agile'
+import PostCardMobile from '@/components/UI/Mobile/PostCardMobile'
 import 'vueperslides/dist/vueperslides.css'
-import axios from 'axios'
 export default {
   name: 'PostList',
   props: {
   },
-  components:{
-    PostCard,
-    VueperSlides,
-    VueperSlide
+  components: {
+    agile: VueAgile,
+    PostCardMobile
   },
   data(){
     return{
@@ -37,16 +35,10 @@ export default {
     }
   },
   mounted(){
-    this.getPosts('http://localhost:6950/v1/posts')
+    this.posts = this.$store.state.currentPostList;
+    console.log(this.posts)
   },
   methods:{
-    async getPosts(url){
-        const res = await axios.get(url, {
-            })
-      this.posts = res.data.data
-      console.log(this.posts[0]._id)
-
-    }
   }
 }
 </script>

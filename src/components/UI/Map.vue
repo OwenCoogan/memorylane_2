@@ -11,7 +11,7 @@ export default {
   name: "LeafletMap",
 
   components: {
-      Loader
+      Loader,
   },
   data() {
     return {
@@ -24,6 +24,7 @@ export default {
   },
   methods:{
     setCurrentPositionMarker(coordinates){
+      console.log(coordinates)
       this.currentMarker = L.circle([coordinates.lat,coordinates.long],{radius: 5}).addTo(this.map);
     },
     setPostsMarkers(posts){

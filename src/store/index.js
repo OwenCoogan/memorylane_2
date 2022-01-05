@@ -13,6 +13,9 @@ export default createStore({
     device:null,
     posts:null,
   },
+  getters: {
+    status: state => state.location,
+  },
   mutations: {
     TOGGLE_LOADING(state, payload) {
       state.loading = !!payload;
@@ -21,6 +24,9 @@ export default createStore({
       state.geolocation = payload;
     },
     CHECK_DEVICE(state) {
+      window.innerWidth <= 690 ? state.device = 'Mobile' : state.device = 'desktop';
+    },
+    UPDATE_CURRENT_POSITION(state) {
       window.innerWidth <= 690 ? state.device = 'Mobile' : state.device = 'desktop';
     },
     async GET_POSTS(state,url) {

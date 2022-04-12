@@ -91,6 +91,7 @@ export default {
           this.$store.dispatch('auth/login', this.user).then(
             (res) => {
               console.log(res)
+              this.$router.push('/map');
             },
             error => {
               console.log(error)

@@ -1,17 +1,20 @@
 import axios from 'axios'
-const API_URL = 'https://161.35.244.159:6950/v1/auth/';
+const API_URL = 'http://localhost:6950/auth';
 
 class AuthService {
+  constructor() {
+    this.router = this.$router;
+  }
   login(user) {
     return axios
-      .post(API_URL + 'login', {
+      .post(API_URL + '/login', {
         email: user.email,
         password: user.password
       })
       .then(response => {
         console.log(response)
-        if (response.data.data.accessToken) {
-          localStorage.setItem('MemoryLaneCookie', JSON.stringify(response.data.data.accessToken));
+        if (response.data) {
+          localStorage.setItem('MemoryLaneCookie', JSON.stringify(response.data));
         }
         return response.data;
       });
@@ -22,12 +25,20 @@ class AuthService {
   }
 
   register(user) {
-    return axios.post(API_URL + 'register', {
+    return axios.post(API_URL + '/register', {
       firstname: user.firstname,
       lastname: user.lastname,
       email: user.email,
       password: user.password
+    })
+    .then(response => {
+      console.log(response)
+      if (response.data) {
+        localStorage.setItem('MemoryLaneCookie', JSON.stringify(response.data));
+      }
+      return response.data;
     });
+
   }
 }
 

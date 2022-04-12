@@ -8,7 +8,7 @@
             <p>{{post.content}}</p>
             </div>
           </div>
-          <form :action="`https://161.35.244.159:6950/v1/posts/upload/${post._id}`" enctype="multipart/form-data" method="POST" @submit="submitImage">
+          <form :action="'localhost:6950:6950/v1/posts/upload/${post._id}'" enctype="multipart/form-data" method="POST" @submit="submitImage">
             <input type="file" name="myImage" accept="image/*" @change="this.onFilePicked"/>
             <input type="submit" value="Upload Photo"/>
           </form>
@@ -35,7 +35,7 @@ export default {
     }
   },
   mounted(){
-    this.getPost('https://161.35.244.159:6950/v1/posts/'+this.$route.params.id)
+    this.getPost(`'localhost:6950':6950/v1/posts/${this.$route.params.id}`)
   },
   methods:{
     async getPost(url){
@@ -58,7 +58,7 @@ export default {
       console.log(this.image)
       const formData = new FormData();
       formData.append('file',this.image);
-      await axios.post(`https://161.35.244.159:6950/v1/posts/upload/${this.post._id}`,formData)
+      await axios.post(`localhost:6950/v1/posts/upload/${this.post._id}`,formData)
       .then(res => console.log(res))
       .catch(err => console.log(err))
 

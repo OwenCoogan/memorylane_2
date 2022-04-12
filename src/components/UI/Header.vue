@@ -24,14 +24,20 @@
       <div>
         <a v-on:click="this.mobileMenuOpen=!mobileMenuOpen" class=" inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Download</a>
       </div>
+      <logout-button/>
     </div>
 </nav>
 </template>
 
 <script>
+import LogoutButton from './LogoutButton.vue'
 export default {
   name: 'Header',
   props: {
+  },
+  components:{
+    LogoutButton
+
   },
   data(){
     return{

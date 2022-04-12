@@ -19,7 +19,7 @@ export default {
   },
   mounted(){
     this.checkDevice();
-    this.$store.dispatch('getPosts','https://161.35.244.159:6950/v1/posts');
+    this.$store.dispatch('getPosts','http://localhost:6950/v1/posts')
   }
 }
 </script>

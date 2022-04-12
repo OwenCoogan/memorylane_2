@@ -9,8 +9,8 @@
         :img="post.image"
         :description="post.content"
         :tags="post.tags"
-        :lat="post.gpsPositionLat"
-        :long="post.gpsPositionLong"
+        :lat="post.latitude"
+        :long="post.longitude"
         />
       </li>
     </div>
@@ -41,6 +41,7 @@ export default {
   },
   mounted(){
     this.posts = this.$store.state.currentPostList.reverse();
+    console.log(this.posts)
   },
   methods:{
     toggleForm(){

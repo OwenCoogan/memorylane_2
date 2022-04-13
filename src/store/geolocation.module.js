@@ -45,5 +45,6 @@ export const geolocation = {
     UPDATE_CURRENT_POSITION(state,payload) {
       state.currentPosition = payload
     },
+
   }
 };

@@ -62,7 +62,6 @@ export const auth = {
     },
     async checkUserToken(state) {
       const token = JSON.parse(localStorage.getItem('MemoryLaneCookie'))
-      console.log(token)
       if (token ===null) {
         state.status.loggedIn = false;
       }

@@ -75,7 +75,7 @@ export default {
           content:this.content,
           latitude:this.position.gpsPositionLat,
           longitude:this.position.gpsPositionLong,
-          userId:this.$store.state.user.id
+          userId:this.$store.state.auth.user.id
       })
 
       .then(this.loading = false)

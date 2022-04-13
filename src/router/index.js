@@ -3,10 +3,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { checkUserToken } from '../services/auth.middleware'
 import store from '../store'
 
-function RedirectToLogin() {
+function RedirectUnregisteredUsers() {
   checkUserToken(store)
   if(store.state.auth.status.loggedIn === false){
-    console.log('redirect')
     router.push('/login')
   }
 }
@@ -27,7 +26,7 @@ const routes = [
     name: 'Map',
     component: () => import('../views/MainMap.vue'),
     beforeEnter: () => {
-      RedirectToLogin()
+      RedirectUnregisteredUsers()
     },
   },
   {
@@ -35,7 +34,7 @@ const routes = [
     name: 'Post {{ $route.params.id }}',
     component: () => import('../views/PostPage.vue'),
     beforeEnter: () => {
-      RedirectToLogin()
+      RedirectUnregisteredUsers()
     },
   },
   {
@@ -53,7 +52,7 @@ const routes = [
     name: 'Profile',
     component: () => import(/* webpackChunkName: "about" */ '../views/Profile.vue'),
     beforeEnter: () => {
-      RedirectToLogin()
+      RedirectUnregisteredUsers()
     },
   }
 

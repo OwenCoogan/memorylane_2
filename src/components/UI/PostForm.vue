@@ -70,11 +70,13 @@ export default {
   methods:{
     async handleSubmitPost(){
       this.loading = true;
-      axios.post('https://161.35.244.159:6950/v1/post/create', {
+      console.log(this.$store.state.auth)
+      axios.post('http://localhost:6950/v1/post/create', {
           title:this.title,
           content:this.content,
-          gpsPositionLat:this.position.gpsPositionLat,
-          gpsPositionLong:this.position.gpsPositionLong
+          latitude:this.position.gpsPositionLat,
+          longitude:this.position.gpsPositionLong,
+          userId:this.$store.state.user.id
       })
 
       .then(this.loading = false)

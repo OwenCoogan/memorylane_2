@@ -5,7 +5,7 @@
       <li v-for="post in posts" :key="post.title">
         <PostCard
         :title="post.title"
-        :id="post._id"
+        :id="post.id"
         :img="post.image"
         :description="post.content"
         :tags="post.tags"

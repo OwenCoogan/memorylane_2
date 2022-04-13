@@ -15,11 +15,19 @@ export default {
   methods:{
     checkDevice(){
       this.$store.dispatch('checkDevice')
+    },
+    redirectUnregistered(){
+      console.log(this.$router.currentRoute._value.name ==="Login" )
+      if(this.$store.state.auth.status.loggedIn === false && this.$router.currentRoute._value.name ==="Login" && this.$router.currentRoute._value.name ==="Register"){
+        this.$router.push('/login')
+      }
     }
   },
   mounted(){
     this.checkDevice();
-    this.$store.dispatch('getPosts','http://localhost:6950/v1/posts')
+    this.redirectUnregistered();
+    this.$store.dispatch('getPosts','http://localhost:6950/v1/posts');
+
   }
 }
 </script>

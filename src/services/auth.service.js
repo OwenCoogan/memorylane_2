@@ -5,8 +5,8 @@ class AuthService {
   constructor() {
     this.router = this.$router;
   }
-  login(user) {
-    return axios
+  async login(user) {
+    await axios
       .post(API_URL + '/login', {
         email: user.email,
         password: user.password
@@ -16,7 +16,6 @@ class AuthService {
         if (response.data) {
           localStorage.setItem('MemoryLaneCookie', JSON.stringify(response.data));
         }
-        return response.data;
       });
   }
 
@@ -32,10 +31,6 @@ class AuthService {
       password: user.password
     })
     .then(response => {
-      console.log(response)
-      if (response.data) {
-        localStorage.setItem('MemoryLaneCookie', JSON.stringify(response.data));
-      }
       return response.data;
     });
 

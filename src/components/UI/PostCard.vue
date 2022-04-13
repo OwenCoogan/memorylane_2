@@ -38,7 +38,6 @@ export default {
     id:{
       type: String,
       required: true,
-      default:'not-found'
     },
     img: {
       type: String,

@@ -12,7 +12,6 @@ class AuthService {
         password: user.password
       })
       .then(response => {
-        console.log(response)
         if (response.data) {
           localStorage.setItem('MemoryLaneCookie', JSON.stringify(response.data));
         }
@@ -20,7 +19,7 @@ class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('MemoryLaneCookie');
+    localStorage.removeItem('MemoryLaneCookie')
   }
 
   register(user) {

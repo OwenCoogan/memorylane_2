@@ -34,7 +34,6 @@ export default createStore({
       await axios.get(url, {
       })
       .then(res => {
-        console.log(res.status)
         if(res.status != 200){
           state.currentPostList = 'error'
         }

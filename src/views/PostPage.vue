@@ -50,7 +50,6 @@ export default {
     async getPost(url){
         await axios.get(url)
         .then( res => this.post = res.data.data)
-        .then(console.log(this.post))
         .then(this.isLoading = false)
     }
   }

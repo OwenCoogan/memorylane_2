@@ -25,6 +25,9 @@ export const auth = {
       AuthService.logout();
       commit('logout');
     },
+    checkUserToken({ commit }) {
+      commit('checkUserToken')
+    },
     register({ commit }, user) {
       return AuthService.register(user).then(
         response => {
@@ -56,6 +59,17 @@ export const auth = {
     },
     registerFailure(state) {
       state.status.loggedIn = false;
+    },
+    async checkUserToken(state) {
+      const token = JSON.parse(localStorage.getItem('MemoryLaneCookie'))
+      console.log(token)
+      if (token ===null) {
+        state.status.loggedIn = false;
+      }
+      else{
+        state.user = token.data.user
+        state.status.loggedIn = true
+      }
     }
   }
 };

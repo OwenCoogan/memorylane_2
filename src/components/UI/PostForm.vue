@@ -70,7 +70,6 @@ export default {
   methods:{
     async handleSubmitPost(){
       this.loading = true;
-      console.log(this.$store.state.auth)
       axios.post('http://localhost:6950/v1/post/create', {
           title:this.title,
           content:this.content,
@@ -80,14 +79,9 @@ export default {
       })
 
       .then(this.loading = false)
-      .then(res => {
-        console.log(res)
-        location.reload();
-
-      })
+      .then(location.reload())
       .catch(err =>{
-        console.log(err)
-        this.message = 'an error has occured';
+        this.message = err;
       });
     }
   }

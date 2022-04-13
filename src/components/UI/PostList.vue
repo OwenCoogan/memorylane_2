@@ -41,7 +41,6 @@ export default {
   },
   mounted(){
     this.posts = this.$store.state.currentPostList.reverse();
-    console.log(this.posts)
   },
   methods:{
     toggleForm(){

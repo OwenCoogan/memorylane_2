@@ -9,9 +9,8 @@
     <input type="file" name="myImage" accept="image/*" @change="this.onFilePicked"/>
     <input type="submit" value="Upload Photo"/>
   </form>
-  <p v-if="this.message !=null">{{this.message}}</p>
+  <p style="color:red" v-if="this.message !=null">{{this.message}}</p>
 </template>
-
 <script>
 import axios from 'axios'
 export default {
@@ -47,9 +46,7 @@ export default {
       formData.append('file',this.image);
       await axios.post(`http://localhost:6950/upload/post/${this.id}/image/add/`,formData)
       .then(res => this.message = res.data)
-      .catch(err => this.message = err.data
-      )
-
+      .catch(err => this.message = err.data)
     }
   }
 }
